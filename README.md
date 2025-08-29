@@ -15,12 +15,12 @@ A arquitetura foi construída sobre serviços da AWS, com Apache Airflow para or
 ## Tecnologias
 Ingestão de Dados
 - Batch:
- - AWS RDS (MySQL/Postgres) – dados transacionais.
- - Arquivos CSV/Parquet – importados via S3.
- - Airflow (EKS) – orquestra jobs ETL de ingestão em lote.
+  - AWS RDS (MySQL/Postgres) – dados transacionais.
+  - Arquivos CSV/Parquet – importados via S3.
+  - Airflow (EKS) – orquestra jobs ETL de ingestão em lote.
 - Streaming:
- - AWS Kinesis Data Streams – eventos de clique, navegação e carrinho.
- - AWS Kinesis Firehose – grava dados crus no S3 (Bronze) e envia para Databricks.
+  - AWS Kinesis Data Streams – eventos de clique, navegação e carrinho.
+  - AWS Kinesis Firehose – grava dados crus no S3 (Bronze) e envia para Databricks.
 ## Arquitetura
 ![alt text](architecture.png)
 ## Documentações Utilizadas
