@@ -21,6 +21,51 @@ Ingestão de Dados
 - Streaming:
   - AWS Kinesis Data Streams – eventos de clique, navegação e carrinho.
   - AWS Kinesis Firehose – grava dados crus no S3 (Bronze) e envia para Databricks.
+
+Processamento e Transformação
+- Databricks (Delta Lake):
+  - Batch: transformação de dados históricos.
+  - Streaming: enriquecimento em tempo quase real.
+- Camadas:
+  - Bronze → dados crus.
+  - Prata → dados tratados e normalizados.
+  - Ouro → modelo dimensional (Star Schema).
+- Modelo Dimensional (Star Schema):
+  - Fato_Vendas (transações).
+  - Dim_Cliente,
+  - Dim_Produto,
+  - Dim_Tempo, 
+  - Dim_Loja, 
+  - Dim_Canal.
+
+Armazenamento
+- Amazon S3 dividido em:
+  - /bronze – dados crus.
+  - /silver – dados limpos.
+  - /gold – dados analíticos (modelo dimensional).
+- Delta Lake sobre S3 para versionamento e transações ACID.
+
+Consumo e Visualização
+- Athena ou Redshift Spectrum → consultas SQL.
+- Power BI → dashboards analíticos.
+  - Vendas por canal (online vs físico).
+  - Performance de campanhas em tempo real.
+  - Análise de clientes (novos x recorrentes).
+
+Infraestrutura e Orquestração
+- Terraform:
+  - Criação de buckets S3 (bronze, prata, ouro).
+  - Provisionamento de clusters EKS (Airflow).
+  - Criação de Kinesis, RDS, permissões IAM.
+  - Deploy do workspace Databricks.
+- Kubernetes (EKS):
+  - Airflow rodando em containers.
+  - Escalabilidade horizontal automática.
+  - Integração com AWS Secrets Manager.
+- Monitoramento:
+  - CloudWatch + Prometheus → métricas.
+  - Airflow UI → monitoramento de DAGs.
+  - Databricks Jobs → status de pipelines.
 ## Arquitetura
 ![alt text](architecture.png)
 ## Documentações Utilizadas
